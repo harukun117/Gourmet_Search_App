@@ -1,0 +1,6 @@
+# Xcode user-specific files
+**/xcuserdata/
+
+# Ignore user-specific workspace settings
+*.xcworkspace/xcuserdata/
+*.xcworkspace/xcshareddata/
