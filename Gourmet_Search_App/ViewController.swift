@@ -7,9 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-    @IBOutlet weak var rangePickerView: UIPickerView!
+class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UISearchBarDelegate {
 
+    @IBOutlet var searchBar: UISearchBar!
+
+    @IBOutlet weak var rangePickerView: UIPickerView!
     @IBOutlet weak var budgetPickerView: UIPickerView!
 
     @IBOutlet var izakaya: UIButton!
@@ -32,6 +34,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
 
     var genres = [String?](repeating: nil, count: 17)
 
+    var searchText: String = ""
+
     var rangePickerSelectedIndex: Int = 0
     var budgetPickerSelectedIndex: Int = 0
 
@@ -41,6 +45,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        searchBar.delegate = self
+        searchBar.placeholder = "フリーワード　例)新宿 居酒屋"
+
         rangePickerView.dataSource = self
         budgetPickerView.dataSource = self
 
@@ -156,6 +163,16 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
             break
         }
     }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+        print(searchText)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            searchBar.resignFirstResponder() // キーボードを閉じる
+    }
+
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
             return 1
     }
