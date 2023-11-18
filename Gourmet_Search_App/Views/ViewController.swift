@@ -32,13 +32,6 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet var cafe: UIButton!
     @IBOutlet var other: UIButton!
 
-    var genres = [String?](repeating: nil, count: 17)
-
-    var searchText: String = ""
-
-    var rangePickerSelectedIndex: Int = 0
-    var budgetPickerSelectedIndex: Int = 0
-
     var searchStoreViewModel: SearchStoreViewModel = SearchStoreViewModel()
 
 
@@ -58,106 +51,106 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBAction func tapButton(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            if genres[0] == nil {
-                genres[0] = "G001"
+            if searchStoreViewModel.genres[0] == nil {
+                searchStoreViewModel.genres[0] = "G001"
             } else {
-                genres[0] = nil
+                searchStoreViewModel.genres[0] = nil
             }
         case 1:
-            if genres[1] == nil {
-                genres[1] = "G002"
+            if searchStoreViewModel.genres[1] == nil {
+                searchStoreViewModel.genres[1] = "G002"
             } else {
-                genres[1] = nil
+                searchStoreViewModel.genres[1] = nil
             }
         case 2:
-            if genres[2] == nil {
-                genres[2] = "G003"
+            if searchStoreViewModel.genres[2] == nil {
+                searchStoreViewModel.genres[2] = "G003"
             } else {
-                genres[2] = nil
+                searchStoreViewModel.genres[2] = nil
             }
         case 3:
-            if genres[3] == nil {
-                genres[3] = "G004"
+            if searchStoreViewModel.genres[3] == nil {
+                searchStoreViewModel.genres[3] = "G004"
             } else {
-                genres[3] = nil
+                searchStoreViewModel.genres[3] = nil
             }
         case 4:
-            if genres[4] == nil {
-                genres[4] = "G005"
+            if searchStoreViewModel.genres[4] == nil {
+                searchStoreViewModel.genres[4] = "G005"
             } else {
-                genres[4] = nil
+                searchStoreViewModel.genres[4] = nil
             }
         case 5:
-            if genres[5] == nil {
-                genres[5] = "G006"
+            if searchStoreViewModel.genres[5] == nil {
+                searchStoreViewModel.genres[5] = "G006"
             } else {
-                genres[5] = nil
+                searchStoreViewModel.genres[5] = nil
             }
         case 6:
-            if genres[6] == nil {
-                genres[6] = "G007"
+            if searchStoreViewModel.genres[6] == nil {
+                searchStoreViewModel.genres[6] = "G007"
             } else {
-                genres[6] = nil
+                searchStoreViewModel.genres[6] = nil
             }
         case 7:
-            if genres[7] == nil {
-                genres[7] = "G008"
+            if searchStoreViewModel.genres[7] == nil {
+                searchStoreViewModel.genres[7] = "G008"
             } else {
-                genres[7] = nil
+                searchStoreViewModel.genres[7] = nil
             }
         case 8:
-            if genres[8] == nil {
-                genres[8] = "G017"
+            if searchStoreViewModel.genres[8] == nil {
+                searchStoreViewModel.genres[8] = "G017"
             } else {
-                genres[8] = nil
+                searchStoreViewModel.genres[8] = nil
             }
         case 9:
-            if genres[9] == nil {
-                genres[9] = "G009"
+            if searchStoreViewModel.genres[9] == nil {
+                searchStoreViewModel.genres[9] = "G009"
             } else {
-                genres[9] = nil
+                searchStoreViewModel.genres[9] = nil
             }
         case 10:
-            if genres[10] == nil {
-                genres[10] = "G010"
+            if searchStoreViewModel.genres[10] == nil {
+                searchStoreViewModel.genres[10] = "G010"
             } else {
-                genres[10] = nil
+                searchStoreViewModel.genres[10] = nil
             }
         case 11:
-            if genres[11] == nil {
-                genres[11] = "G011"
+            if searchStoreViewModel.genres[11] == nil {
+                searchStoreViewModel.genres[11] = "G011"
             } else {
-                genres[11] = nil
+                searchStoreViewModel.genres[11] = nil
             }
         case 12:
-            if genres[12] == nil {
-                genres[12] = "G012"
+            if searchStoreViewModel.genres[12] == nil {
+                searchStoreViewModel.genres[12] = "G012"
             } else {
-                genres[12] = nil
+                searchStoreViewModel.genres[12] = nil
             }
         case 13:
-            if genres[13] == nil {
-                genres[13] = "G013"
+            if searchStoreViewModel.genres[13] == nil {
+                searchStoreViewModel.genres[13] = "G013"
             } else {
-                genres[13] = nil
+                searchStoreViewModel.genres[13] = nil
             }
         case 14:
-            if genres[14] == nil {
-                genres[14] = "G016"
+            if searchStoreViewModel.genres[14] == nil {
+                searchStoreViewModel.genres[14] = "G016"
             } else {
-                genres[14] = nil
+                searchStoreViewModel.genres[14] = nil
             }
         case 15:
-            if genres[15] == nil {
-                genres[15] = "G014"
+            if searchStoreViewModel.genres[15] == nil {
+                searchStoreViewModel.genres[15] = "G014"
             } else {
-                genres[15] = nil
+                searchStoreViewModel.genres[15] = nil
             }
         case 16:
-            if genres[16] == nil {
-                genres[16] = "G015"
+            if searchStoreViewModel.genres[16] == nil {
+                searchStoreViewModel.genres[16] = "G015"
             } else {
-                genres[16] = nil
+                searchStoreViewModel.genres[16] = nil
             }
         default:
             break
@@ -165,7 +158,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
+        searchStoreViewModel.searchText = searchText
         print(searchText)
     }
 
@@ -203,11 +196,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             // ピッカーで選択した項目の処理
         if pickerView == rangePickerView {
-            rangePickerSelectedIndex = row
+            searchStoreViewModel.rangePickerSelectedIndex = row
         }
 
         if pickerView == budgetPickerView {
-            budgetPickerSelectedIndex = row
+            searchStoreViewModel.budgetPickerSelectedIndex = row
         }
 
     }
