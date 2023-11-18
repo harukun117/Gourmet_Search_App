@@ -53,10 +53,8 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         case 0:
             if genres[0] == nil {
                 genres[0] = "G001"
-                print("G001がセットされた")
             } else {
                 genres[0] = nil
-                print("genre[0] = nil")
             }
         case 1:
             if genres[1] == nil {
