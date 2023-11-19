@@ -31,9 +31,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     @IBOutlet var okonomi: UIButton!
     @IBOutlet var cafe: UIButton!
     @IBOutlet var other: UIButton!
+    @IBOutlet var searchButton: UIButton!
 
     var searchStoreViewModel: SearchStoreViewModel = SearchStoreViewModel()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,117 +49,11 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     }
 
     @IBAction func tapButton(_ sender: UIButton) {
-        switch sender.tag {
-        case 0:
-            if searchStoreViewModel.genres[0] == nil {
-                searchStoreViewModel.genres[0] = "G001"
-            } else {
-                searchStoreViewModel.genres[0] = nil
-            }
-        case 1:
-            if searchStoreViewModel.genres[1] == nil {
-                searchStoreViewModel.genres[1] = "G002"
-            } else {
-                searchStoreViewModel.genres[1] = nil
-            }
-        case 2:
-            if searchStoreViewModel.genres[2] == nil {
-                searchStoreViewModel.genres[2] = "G003"
-            } else {
-                searchStoreViewModel.genres[2] = nil
-            }
-        case 3:
-            if searchStoreViewModel.genres[3] == nil {
-                searchStoreViewModel.genres[3] = "G004"
-            } else {
-                searchStoreViewModel.genres[3] = nil
-            }
-        case 4:
-            if searchStoreViewModel.genres[4] == nil {
-                searchStoreViewModel.genres[4] = "G005"
-            } else {
-                searchStoreViewModel.genres[4] = nil
-            }
-        case 5:
-            if searchStoreViewModel.genres[5] == nil {
-                searchStoreViewModel.genres[5] = "G006"
-            } else {
-                searchStoreViewModel.genres[5] = nil
-            }
-        case 6:
-            if searchStoreViewModel.genres[6] == nil {
-                searchStoreViewModel.genres[6] = "G007"
-            } else {
-                searchStoreViewModel.genres[6] = nil
-            }
-        case 7:
-            if searchStoreViewModel.genres[7] == nil {
-                searchStoreViewModel.genres[7] = "G008"
-            } else {
-                searchStoreViewModel.genres[7] = nil
-            }
-        case 8:
-            if searchStoreViewModel.genres[8] == nil {
-                searchStoreViewModel.genres[8] = "G017"
-            } else {
-                searchStoreViewModel.genres[8] = nil
-            }
-        case 9:
-            if searchStoreViewModel.genres[9] == nil {
-                searchStoreViewModel.genres[9] = "G009"
-            } else {
-                searchStoreViewModel.genres[9] = nil
-            }
-        case 10:
-            if searchStoreViewModel.genres[10] == nil {
-                searchStoreViewModel.genres[10] = "G010"
-            } else {
-                searchStoreViewModel.genres[10] = nil
-            }
-        case 11:
-            if searchStoreViewModel.genres[11] == nil {
-                searchStoreViewModel.genres[11] = "G011"
-            } else {
-                searchStoreViewModel.genres[11] = nil
-            }
-        case 12:
-            if searchStoreViewModel.genres[12] == nil {
-                searchStoreViewModel.genres[12] = "G012"
-            } else {
-                searchStoreViewModel.genres[12] = nil
-            }
-        case 13:
-            if searchStoreViewModel.genres[13] == nil {
-                searchStoreViewModel.genres[13] = "G013"
-            } else {
-                searchStoreViewModel.genres[13] = nil
-            }
-        case 14:
-            if searchStoreViewModel.genres[14] == nil {
-                searchStoreViewModel.genres[14] = "G016"
-            } else {
-                searchStoreViewModel.genres[14] = nil
-            }
-        case 15:
-            if searchStoreViewModel.genres[15] == nil {
-                searchStoreViewModel.genres[15] = "G014"
-            } else {
-                searchStoreViewModel.genres[15] = nil
-            }
-        case 16:
-            if searchStoreViewModel.genres[16] == nil {
-                searchStoreViewModel.genres[16] = "G015"
-            } else {
-                searchStoreViewModel.genres[16] = nil
-            }
-        default:
-            break
-        }
+        searchStoreViewModel.selectGenre(tag: sender.tag)
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchStoreViewModel.searchText = searchText
-        print(searchText)
+        searchStoreViewModel.setKeyword(keyword: searchText)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -196,14 +90,19 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
             // ピッカーで選択した項目の処理
         if pickerView == rangePickerView {
-            searchStoreViewModel.rangePickerSelectedIndex = row
+            searchStoreViewModel.selectRange(index: row)
         }
 
         if pickerView == budgetPickerView {
-            searchStoreViewModel.budgetPickerSelectedIndex = row
+            searchStoreViewModel.selectBudget(index: row)
         }
 
     }
+
+    @IBAction func search(_ sender: Any) {
+        searchStoreViewModel.getStore()
+    }
+
 
 }
 

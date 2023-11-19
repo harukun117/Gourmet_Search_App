@@ -8,9 +8,9 @@
 import Foundation
 
 struct GetStoreList {
-    let baseURL = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6ba99736091e59ed&id=J001280392&format=json")!
+    let baseURL = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/?key=6ba99736091e59ed&format=json")!
 
-    func getStoreList(keyword: String? = nil, lat: Double, lng: Double, rangeCode: String, genres: [String?], budget: String? = nil) async -> Result<StoreListResponse, APIClientError> {
+    func getStoreList(keyword: String?, lat: Double, lng: Double, rangeCode: String, genres: [String?], budget: String?) async -> Result<StoreListResponse, APIClientError> {
 
 
         var urlComponents = URLComponents(
@@ -19,28 +19,37 @@ struct GetStoreList {
         )
 
         let selectedGenre = genres.contains{$0 != nil}
-        var genreQuery = ""
+        var genreQuery: String? = ""
         if selectedGenre {
             for genre in genres {
                 if let unwrappedGenre = genre {
-                    genreQuery += unwrappedGenre + ","
+                    genreQuery! += unwrappedGenre + ","
                 }
             }
-            genreQuery.removeLast()
+            genreQuery!.removeLast()
+        }
+
+        if genreQuery!.isEmpty {
+            genreQuery = nil
         }
 
         urlComponents?.queryItems = [
+            URLQueryItem(name: "key", value: "6ba99736091e59ed"),
             URLQueryItem(name: "keyword", value: keyword),
             URLQueryItem(name: "lat", value: String(format: "%.6f", lat)),
             URLQueryItem(name: "lng", value: String(format: "%.6f", lng)),
             URLQueryItem(name: "range", value: rangeCode),
             URLQueryItem(name: "genre", value: genreQuery),
-            URLQueryItem(name: "budget", value: budget)
+            URLQueryItem(name: "budget", value: budget),
+            URLQueryItem(name: "format", value: "json"),
+            URLQueryItem(name: "type", value: "lite")
+
         ]
 
         guard let url = urlComponents?.url else {
             return .failure(.invalidURL)
         }
+        print(url)
 
         //URL Request
         var urlRequest = URLRequest(url: url)
@@ -79,6 +88,8 @@ struct GetStoreList {
     }
 
     func parseResponse<Response: Decodable>(from data: Data) throws -> Response {
-        return try JSONDecoder().decode(Response.self, from: data)
+        let decoder = try JSONDecoder().decode(Response.self, from: data)
+        print(decoder)
+        return decoder
     }
 }

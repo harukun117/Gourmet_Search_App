@@ -464,6 +464,9 @@
                                             <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="baseBackgroundColor" systemColor="systemYellowColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="search:" destination="pzv-fJ-ws2" eventType="touchUpInside" id="taO-oU-P16"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -549,6 +552,7 @@
                         <outlet property="ramen" destination="Bve-iV-Kyj" id="yxu-iq-OUe"/>
                         <outlet property="rangePickerView" destination="kkq-Qt-pmO" id="aPE-te-K1N"/>
                         <outlet property="searchBar" destination="CQz-Np-UHG" id="vMB-vg-YyN"/>
+                        <outlet property="searchButton" destination="HfH-pA-rmq" id="thQ-ze-Xeo"/>
                         <outlet property="westernFood" destination="iE6-e0-NJz" id="AjR-wE-74p"/>
                         <outlet property="yakiniku" destination="fCq-MA-VA7" id="fiP-3e-3N8"/>
                     </connections>
