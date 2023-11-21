@@ -466,6 +466,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="search:" destination="pzv-fJ-ws2" eventType="touchUpInside" id="taO-oU-P16"/>
+                                            <segue destination="Esc-jE-nbq" kind="push" id="aoc-AE-jrT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -561,6 +562,41 @@
             </objects>
             <point key="canvasLocation" x="180.91603053435114" y="14.788732394366198"/>
         </scene>
+        <!--検索結果-->
+        <scene sceneID="2Ud-SV-VEt">
+            <objects>
+                <viewController title="検索結果" id="Esc-jE-nbq" customClass="ResultStoreListViewController" customModule="Gourmet_Search_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dej-9l-T7k">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jN8-rd-jNW">
+                                <rect key="frame" x="0.0" y="103" width="430" height="829"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Esc-jE-nbq" id="aMg-Xq-lD2"/>
+                                    <outlet property="delegate" destination="Esc-jE-nbq" id="QG9-b0-e63"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="djT-pj-oCU"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="djT-pj-oCU" firstAttribute="trailing" secondItem="jN8-rd-jNW" secondAttribute="trailing" id="5Pb-6Q-zEe"/>
+                            <constraint firstAttribute="bottom" secondItem="jN8-rd-jNW" secondAttribute="bottom" id="C5L-5J-hSj"/>
+                            <constraint firstItem="jN8-rd-jNW" firstAttribute="top" secondItem="djT-pj-oCU" secondAttribute="top" id="X84-Oa-fTJ"/>
+                            <constraint firstItem="jN8-rd-jNW" firstAttribute="leading" secondItem="djT-pj-oCU" secondAttribute="leading" id="YR7-am-bpm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="検索結果" id="sTS-Hb-Re9"/>
+                    <connections>
+                        <outlet property="tableView" destination="jN8-rd-jNW" id="byB-Tw-2xx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hdi-AO-IJ6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882" y="19"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="WDm-B3-oGt">
             <objects>
@@ -580,6 +616,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

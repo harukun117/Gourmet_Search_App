@@ -33,11 +33,11 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     @IBOutlet var other: UIButton!
     @IBOutlet var searchButton: UIButton!
 
-    var searchStoreViewModel: SearchStoreViewModel = SearchStoreViewModel()
+    var searchStoreViewModel: SearchStoreViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        searchStoreViewModel = SearchStoreViewModel.shared
         searchBar.delegate = self
         searchBar.placeholder = "フリーワード　例)新宿 居酒屋"
 
