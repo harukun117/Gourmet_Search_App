@@ -8,29 +8,27 @@
 import UIKit
 
 class ResultStoreListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
     var searchStoreViewModel: SearchStoreViewModel!
     @IBOutlet weak var tableView: UITableView!
+
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
 
     override func viewDidLoad() {
          super.viewDidLoad()
         searchStoreViewModel = SearchStoreViewModel.shared
+
         tableView.register(UINib(nibName: "ResultStoreListTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let storeListResponse = searchStoreViewModel.storeListResponse else {
-            print("a")
-            return 0
-        }
-        return 10
+        return searchStoreViewModel.storeContents.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customCell", for: indexPath) as! ResultStoreListTableViewCell
-        cell.img.image = UIImage(systemName: "swift")
-        cell.name.text = "name"
-        cell.access.text = "access"
-        cell.budget.text = "budget"
+
+        cell.create(img: searchStoreViewModel.storeContents[indexPath.row].s_photo, name: searchStoreViewModel.storeContents[indexPath.row].name, access: searchStoreViewModel.storeContents[indexPath.row].access, budget: searchStoreViewModel.storeContents[indexPath.row].budget_average)
         return cell
     }
 }

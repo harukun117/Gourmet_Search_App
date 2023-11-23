@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UISearchBarDelegate {
 
@@ -34,6 +35,7 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     @IBOutlet var searchButton: UIButton!
 
     var searchStoreViewModel: SearchStoreViewModel!
+    private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,7 +102,23 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     @IBAction func search(_ sender: Any) {
+        searchStoreViewModel.storeListResponse = nil
         searchStoreViewModel.getStore()
+        searchStoreViewModel.$storeListResponse
+            .compactMap {$0}
+            .sink { [weak self] _ in
+                if let navigationController = self?.navigationController {
+                    if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
+                        // 既存のResultStoreListViewControllerが存在する場合
+                        navigationController.popToViewController(nextViewController, animated: true)
+                    } else {
+                        // 既存のResultStoreListViewControllerが存在しない場合、新しいインスタンスを生成して画面遷移
+                        let nextViewController = self?.storyboard?.instantiateViewController(withIdentifier: "result") as! ResultStoreListViewController
+                        navigationController.pushViewController(nextViewController, animated: true)
+                    }
+                }
+            }
+            .store(in: &cancellables)
     }
 
 
