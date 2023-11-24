@@ -59,11 +59,11 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            searchBar.resignFirstResponder() // キーボードを閉じる
+        searchBar.resignFirstResponder() // キーボードを閉じる
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            return 1
+        return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -90,7 +90,7 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-            // ピッカーで選択した項目の処理
+        // ピッカーで選択した項目の処理
         if pickerView == rangePickerView {
             searchStoreViewModel.selectRange(index: row)
         }

@@ -31,4 +31,18 @@ class ResultStoreListViewController: UIViewController, UITableViewDelegate, UITa
         cell.create(img: searchStoreViewModel.storeContents[indexPath.row].s_photo, name: searchStoreViewModel.storeContents[indexPath.row].name, access: searchStoreViewModel.storeContents[indexPath.row].access, budget: searchStoreViewModel.storeContents[indexPath.row].budget_average)
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchStoreViewModel.storeContent = searchStoreViewModel.storeContents[indexPath.row]
+        if let navigationController = self.navigationController {
+            if let nextViewController = navigationController.viewControllers.first(where: { $0 is DetailViewController }) as? DetailViewController {
+                // 既存のResultStoreListViewControllerが存在する場合
+                navigationController.popToViewController(nextViewController, animated: true)
+            } else {
+                // 既存のResultStoreListViewControllerが存在しない場合、新しいインスタンスを生成して画面遷移
+                let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "detail") as! DetailViewController
+                navigationController.pushViewController(nextViewController, animated: true)
+            }
+        }
+    }
 }

@@ -13,6 +13,7 @@ final class SearchStoreViewModel {
     private let getStoreList = GetStoreList()
     @Published var storeListResponse: StoreListResponse?
     var storeContents: [StoreContent] = []
+    var storeContent: StoreContent?
     let rangePickerViewData: [String] = ["300m以内", "500m以内", "1000m以内", "2000m以内", "3000m以内"]
     let budgetPickerViewData: [String] = ["指定なし", "~500円", "501円~1000円", "1001円~1500円", "1501円~2000円", "2001円~3000円", "3001円~4000円", "4001円~5000円", "5001円~7000円", "7001円~10000円", "10001円~15000円", "15001円~20000円", "20001円~30000円", "30001円~"]
     var genres = [String?](repeating: nil, count: 17)
@@ -201,7 +202,7 @@ final class SearchStoreViewModel {
                 name: shop.name ?? "",
                 address: shop.address ?? "",
                 station_name: shop.name ?? "",
-                genre_name: shop.name ?? "",
+                genre_catch: shop.genre?.catchPhrase ?? "",
                 budget_average: shop.budget?.average ?? "",
                 catchPhrase: shop.catchPhrase ?? "",
                 capacity: shop.capacity,
@@ -215,18 +216,10 @@ final class SearchStoreViewModel {
                 free_drink: shop.free_drink ?? "",
                 free_food: shop.free_food ?? "",
                 private_room: shop.private_room ?? "",
-                horigotatsu: shop.horigotatsu ?? "",
-                tatami: shop.tatami ?? "",
                 card: shop.card ?? "",
-                non_smoking: shop.non_smoking ?? "",
-                charter: shop.charter ?? "",
                 wifi: shop.wifi ?? "",
                 parking: shop.parking ?? "",
-                barrier_free: shop.barrier_free ?? "",
-                other_memo: shop.other_memo ?? "",
-                english: shop.english ?? "",
                 pet: shop.pet ?? "",
-                lunch: shop.lunch ?? "",
                 coupon_url: shop.coupon_urls?.sp ?? ""
             )
 
@@ -239,7 +232,7 @@ struct StoreContent: Identifiable {
     let name: String
     let address: String
     let station_name: String
-    let genre_name: String
+    let genre_catch: String
     let budget_average: String
     let catchPhrase: String
     let capacity: Int?
@@ -253,18 +246,10 @@ struct StoreContent: Identifiable {
     let free_drink: String
     let free_food: String
     let private_room: String
-    let horigotatsu: String
-    let tatami: String
     let card: String
-    let non_smoking: String
-    let charter: String
     let wifi: String
     let parking: String
-    let barrier_free: String
-    let other_memo: String
-    let english: String
     let pet: String
-    let lunch: String
     let coupon_url: String
 }
 
