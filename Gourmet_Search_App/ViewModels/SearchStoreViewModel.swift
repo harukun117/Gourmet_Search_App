@@ -20,6 +20,8 @@ final class SearchStoreViewModel {
     var searchText: String? = nil
     var rangeCode: String = "1"
     var budgetCode: String? = nil
+    var lat: Double = 35.669220
+    var lng: Double = 139.761457
 
 
     func setKeyword(keyword: String) {
@@ -180,7 +182,7 @@ final class SearchStoreViewModel {
 
     func getStore() {
         Task {
-            let getStoreListResult = await getStoreList.getStoreList(keyword: searchText, lat: 35.669220, lng: 139.761457, rangeCode: rangeCode, genres: genres, budget: budgetCode)
+            let getStoreListResult = await getStoreList.getStoreList(keyword: searchText, lat: lat, lng: lng, rangeCode: rangeCode, genres: genres, budget: budgetCode)
             switch getStoreListResult {
             case .success(let response):
                 print(response)

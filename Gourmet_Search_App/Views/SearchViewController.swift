@@ -7,8 +7,9 @@
 
 import UIKit
 import Combine
+import CoreLocation
 
-class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UISearchBarDelegate {
+class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet var searchBar: UISearchBar!
 
@@ -35,6 +36,7 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     @IBOutlet var searchButton: UIButton!
 
     var searchStoreViewModel: SearchStoreViewModel!
+    let locationManager = CLLocationManager()
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
@@ -48,10 +50,32 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
 
         rangePickerView.delegate = self
         budgetPickerView.delegate = self
+
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
     }
 
     @IBAction func tapButton(_ sender: UIButton) {
         searchStoreViewModel.selectGenre(tag: sender.tag)
+    }
+
+    @IBAction func search(_ sender: Any) {
+        searchStoreViewModel.storeListResponse = nil
+        switch locationManager.authorizationStatus {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        case .notDetermined:
+            locationManager.requestWhenInUseAuthorization()
+        case .denied, .restricted:
+            let alertController = UIAlertController(title: "エラー", message: "位置情報の取得に失敗しました。端末の設定をご確認ください。", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "戻る", style: .default) { _ in
+            }
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        default:
+            break
+        }
     }
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -59,7 +83,7 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder() // キーボードを閉じる
+        searchBar.resignFirstResponder()
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -90,7 +114,6 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // ピッカーで選択した項目の処理
         if pickerView == rangePickerView {
             searchStoreViewModel.selectRange(index: row)
         }
@@ -101,24 +124,31 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
 
     }
 
-    @IBAction func search(_ sender: Any) {
-        searchStoreViewModel.storeListResponse = nil
-        searchStoreViewModel.getStore()
-        searchStoreViewModel.$storeListResponse
-            .compactMap {$0}
-            .sink { [weak self] _ in
-                if let navigationController = self?.navigationController {
-                    if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
-                        // 既存のResultStoreListViewControllerが存在する場合
-                        navigationController.popToViewController(nextViewController, animated: true)
-                    } else {
-                        // 既存のResultStoreListViewControllerが存在しない場合、新しいインスタンスを生成して画面遷移
-                        let nextViewController = self?.storyboard?.instantiateViewController(withIdentifier: "result") as! ResultStoreListViewController
-                        navigationController.pushViewController(nextViewController, animated: true)
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.last {
+            let latitude = location.coordinate.latitude
+            let longitude = location.coordinate.longitude
+            searchStoreViewModel.lat = latitude
+            searchStoreViewModel.lng = longitude
+            searchStoreViewModel.getStore()
+            searchStoreViewModel.$storeListResponse
+                .compactMap {$0}
+                .sink { [weak self] _ in
+                    if let navigationController = self?.navigationController {
+                        if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
+                            navigationController.popToViewController(nextViewController, animated: true)
+                        } else {
+                            let nextViewController = self?.storyboard?.instantiateViewController(withIdentifier: "result") as! ResultStoreListViewController
+                            navigationController.pushViewController(nextViewController, animated: true)
+                        }
                     }
                 }
-            }
-            .store(in: &cancellables)
+                .store(in: &cancellables)
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error: \(error.localizedDescription)")
     }
 
 

@@ -21,5 +21,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>位置情報は検索画面の「現在地からの半径」で用いられます。</string>
 </dict>
 </plist>
