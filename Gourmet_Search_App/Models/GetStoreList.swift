@@ -10,7 +10,7 @@ import Foundation
 struct GetStoreList {
     let baseURL = URL(string: "https://webservice.recruit.co.jp/hotpepper/gourmet/v1/")!
 
-    func getStoreList(keyword: String?, lat: Double, lng: Double, rangeCode: String, genres: [String?], budget: String?) async -> Result<StoreListResponse, APIClientError> {
+    func getStoreList(keyword: String?, lat: Double, lng: Double, rangeCode: String, genres: [String?], budget: String?, start: Int) async -> Result<StoreListResponse, APIClientError> {
 
 
         var urlComponents = URLComponents(
@@ -41,6 +41,8 @@ struct GetStoreList {
             URLQueryItem(name: "range", value: rangeCode),
             URLQueryItem(name: "genre", value: genreQuery),
             URLQueryItem(name: "budget", value: budget),
+            URLQueryItem(name: "start", value: String(start)),
+            URLQueryItem(name: "count", value: "20"),
             URLQueryItem(name: "format", value: "json")
         ]
 

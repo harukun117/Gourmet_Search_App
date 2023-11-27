@@ -16,6 +16,7 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     @IBOutlet weak var rangePickerView: UIPickerView!
     @IBOutlet weak var budgetPickerView: UIPickerView!
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var izakaya: UIButton!
     @IBOutlet var diningBar: UIButton!
     @IBOutlet var creativeCuisine: UIButton!
@@ -54,6 +55,28 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
+
+        searchStoreViewModel.$state
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] state in
+                switch state {
+                case .loading:
+                    self?.activityIndicator.startAnimating()
+                case .list, .nolist, .error:
+                    self?.activityIndicator.stopAnimating()
+                    if let navigationController = self?.navigationController {
+                        if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
+                            navigationController.popToViewController(nextViewController, animated: true)
+                        } else {
+                            let nextViewController = self?.storyboard?.instantiateViewController(withIdentifier: "result") as! ResultStoreListViewController
+                            navigationController.pushViewController(nextViewController, animated: true)
+                        }
+                    }
+                default:
+                    break
+                }
+            }
+            .store(in: &cancellables)
     }
 
     @IBAction func tapButton(_ sender: UIButton) {
@@ -130,27 +153,13 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
             let longitude = location.coordinate.longitude
             searchStoreViewModel.lat = latitude
             searchStoreViewModel.lng = longitude
+            searchStoreViewModel.start = 1
             searchStoreViewModel.getStore()
-            searchStoreViewModel.$storeListResponse
-                .compactMap {$0}
-                .sink { [weak self] _ in
-                    if let navigationController = self?.navigationController {
-                        if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
-                            navigationController.popToViewController(nextViewController, animated: true)
-                        } else {
-                            let nextViewController = self?.storyboard?.instantiateViewController(withIdentifier: "result") as! ResultStoreListViewController
-                            navigationController.pushViewController(nextViewController, animated: true)
-                        }
-                    }
-                }
-                .store(in: &cancellables)
         }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error: \(error.localizedDescription)")
     }
-
-
 }
 
