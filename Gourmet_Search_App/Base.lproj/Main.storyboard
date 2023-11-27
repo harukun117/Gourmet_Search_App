@@ -756,7 +756,7 @@
                                 <rect key="frame" x="0.0" y="59" width="430" height="873"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O1z-68-xaY">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="974.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="1001.3333333333334"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pyM-H6-ol8">
                                                 <rect key="frame" x="0.0" y="0.0" width="430" height="349.33333333333331"/>
@@ -991,10 +991,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ae-YD-km2">
-                                                <rect key="frame" x="0.0" y="711" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="711" width="430" height="33.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8GN-KZ-cZF">
-                                                        <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="33.666666666666664"/>
                                                         <color key="backgroundColor" red="1" green="0.97580775009999998" blue="0.85406649779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -1008,11 +1008,19 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdP-al-VLf">
-                                                        <rect key="frame" x="107.66666666666666" y="0.0" width="322.33333333333337" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QLE-AY-9WL">
+                                                        <rect key="frame" x="107.66666666666666" y="0.0" width="322.33333333333337" height="33.666666666666664"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain">
+                                                            <attributedString key="attributedTitle">
+                                                                <fragment content="Button">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="17" name="Helvetica"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </buttonConfiguration>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1021,14 +1029,17 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                    </label>
+                                                        <connections>
+                                                            <action selector="openURLTapped:" destination="qfN-7K-gcS" eventType="touchUpInside" id="z3V-Vr-EeG"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="8GN-KZ-cZF" firstAttribute="width" secondItem="6Ae-YD-km2" secondAttribute="width" multiplier="0.25" id="7sl-lT-zea"/>
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i3O-bA-4OJ">
-                                                <rect key="frame" x="0.0" y="731.33333333333337" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="744.66666666666663" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="総席数" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="niF-eP-vzl">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1065,7 +1076,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwx-cT-OHo">
-                                                <rect key="frame" x="0.0" y="751.66666666666663" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="765" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="個室" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBZ-qD-Vlx">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1102,7 +1113,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="psb-lu-PN1">
-                                                <rect key="frame" x="0.0" y="772" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="785.33333333333337" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="飲み放題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1B9-Xg-GlR">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1139,7 +1150,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LQ8-r8-YHi">
-                                                <rect key="frame" x="0.0" y="792.33333333333337" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="805.66666666666663" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="食べ放題" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="On2-A6-hNc">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1176,7 +1187,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2s-y6-ekr">
-                                                <rect key="frame" x="0.0" y="812.66666666666663" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="826" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コース" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5N-Vw-XlZ">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1213,7 +1224,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zkf-iG-sG2">
-                                                <rect key="frame" x="0.0" y="833" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="846.33333333333337" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="カード" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDI-u1-DDN">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1250,7 +1261,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vpV-Mh-gZj">
-                                                <rect key="frame" x="0.0" y="853.33333333333337" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="866.66666666666663" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="駐車場" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qig-QH-Nnc">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1287,7 +1298,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QgZ-jy-fMK">
-                                                <rect key="frame" x="0.0" y="873.66666666666663" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="887" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wi-Fi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vb4-bY-okd">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1324,7 +1335,7 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlp-Ey-XHn">
-                                                <rect key="frame" x="0.0" y="894" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="907.33333333333337" width="430" height="20.333333333333371"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ペット可" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A49-oE-CN1">
                                                         <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
@@ -1361,10 +1372,10 @@
                                                 </constraints>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ouL-ei-MO6">
-                                                <rect key="frame" x="0.0" y="914.33333333333337" width="430" height="20.333333333333371"/>
+                                                <rect key="frame" x="0.0" y="927.66666666666663" width="430" height="33.666666666666629"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="クーポン" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVZ-Us-3n2">
-                                                        <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="20.333333333333332"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="107.66666666666667" height="33.666666666666664"/>
                                                         <color key="backgroundColor" red="1" green="0.97580775009999998" blue="0.85406649779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -1378,11 +1389,20 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFB-UJ-uQ1">
-                                                        <rect key="frame" x="107.66666666666666" y="0.0" width="322.33333333333337" height="20.333333333333332"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rmb-5b-JIY">
+                                                        <rect key="frame" x="107.66666666666666" y="0.0" width="322.33333333333337" height="33.666666666666664"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain">
+                                                            <attributedString key="attributedTitle">
+                                                                <fragment content="Button">
+                                                                    <attributes>
+                                                                        <font key="NSFont" size="17" name="Helvetica"/>
+                                                                        <font key="NSOriginalFont" size="12" name="Helvetica"/>
+                                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                    </attributes>
+                                                                </fragment>
+                                                            </attributedString>
+                                                        </buttonConfiguration>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
                                                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1391,7 +1411,10 @@
                                                                 <real key="value" value="1"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                    </label>
+                                                        <connections>
+                                                            <action selector="openURLTapped:" destination="qfN-7K-gcS" eventType="touchUpInside" id="KCL-uo-X1q"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="sVZ-Us-3n2" firstAttribute="width" secondItem="ouL-ei-MO6" secondAttribute="width" multiplier="0.25" id="y4w-Y5-8Gm"/>
@@ -1502,7 +1525,7 @@
                         <outlet property="capacity" destination="iUp-R5-oI4" id="NjP-eO-Iqb"/>
                         <outlet property="card" destination="14d-z0-XfA" id="JCW-Xj-j72"/>
                         <outlet property="catchPhrase" destination="0ng-Qv-gW7" id="xdz-GN-Mj9"/>
-                        <outlet property="coupon" destination="IFB-UJ-uQ1" id="neL-1T-GDu"/>
+                        <outlet property="coupon" destination="rmb-5b-JIY" id="DAp-97-OIb"/>
                         <outlet property="course" destination="r5w-sO-4hB" id="7mc-qX-Ir8"/>
                         <outlet property="free_drink" destination="Aak-y2-BAB" id="3bo-k6-D5Q"/>
                         <outlet property="free_food" destination="fqI-O8-otV" id="CV2-tF-SXp"/>
@@ -1513,7 +1536,7 @@
                         <outlet property="parking" destination="JrJ-BZ-Jbq" id="MWo-0u-4YA"/>
                         <outlet property="pet" destination="Oo0-J6-IEV" id="O7c-xa-WNO"/>
                         <outlet property="private_room" destination="4Qc-Ow-ZXW" id="iNy-J6-nGP"/>
-                        <outlet property="url" destination="jdP-al-VLf" id="wUa-hI-Eo1"/>
+                        <outlet property="url" destination="QLE-AY-9WL" id="bMQ-K2-SS8"/>
                         <outlet property="wifi" destination="osA-iV-NRr" id="EE4-zi-vww"/>
                     </connections>
                 </viewController>

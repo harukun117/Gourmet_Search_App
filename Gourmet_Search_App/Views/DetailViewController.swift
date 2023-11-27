@@ -17,10 +17,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var access: UILabel!
     @IBOutlet weak var openTime: UILabel!
     @IBOutlet weak var budget_avg: UILabel!
-    @IBOutlet weak var url: UILabel!
     @IBOutlet weak var capacity: UILabel!
     @IBOutlet weak var private_room: UILabel!
-    @IBOutlet weak var coupon: UILabel!
     @IBOutlet weak var pet: UILabel!
     @IBOutlet weak var wifi: UILabel!
     @IBOutlet weak var parking: UILabel!
@@ -29,6 +27,8 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var free_food: UILabel!
     @IBOutlet weak var free_drink: UILabel!
 
+    @IBOutlet weak var coupon: UIButton!
+    @IBOutlet weak var url: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         searchStoreViewModel = SearchStoreViewModel.shared
@@ -47,14 +47,14 @@ class DetailViewController: UIViewController {
             self.access.text = content.access
             self.openTime.text = content.open
             self.budget_avg.text = content.budget_average
-            self.url.text = content.url
+            self.url.setTitle(content.url, for: .normal)
             if let capa = content.capacity {
                 self.capacity.text = String(capa)
             } else {
                 self.capacity.text = ""
             }
             self.private_room.text = content.private_room
-            self.coupon.text = content.coupon_url
+            self.coupon.setTitle(content.coupon_url, for: .normal)
             self.pet.text = content.pet
             self.wifi.text = content.wifi
             self.parking.text = content.parking
@@ -89,4 +89,18 @@ class DetailViewController: UIViewController {
             return UIImage(systemName: "nosign")!
         }
     }
+
+    @IBAction func openURLTapped(_ sender: UIButton) {
+        switch sender.tag {
+        case 0:
+            guard let url = URL(string: url.currentTitle!) else { return }
+            UIApplication.shared.open(url)
+        case 1:
+            guard let coupon = URL(string: coupon.currentTitle!) else { return }
+            UIApplication.shared.open(coupon)
+        default:
+            break
+        }
+    }
+
 }
