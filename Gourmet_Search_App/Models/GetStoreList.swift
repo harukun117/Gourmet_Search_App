@@ -49,7 +49,6 @@ struct GetStoreList {
         guard let url = urlComponents?.url else {
             return .failure(.invalidURL)
         }
-        print(url)
 
         //URL Request
         var urlRequest = URLRequest(url: url)
@@ -88,7 +87,6 @@ struct GetStoreList {
 
     func parseResponse<Response: Decodable>(from data: Data) throws -> Response {
         let decoder = try JSONDecoder().decode(Response.self, from: data)
-        print(decoder)
         return decoder
     }
 }

@@ -62,7 +62,7 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
                 switch state {
                 case .loading:
                     self?.activityIndicator.startAnimating()
-                case .list, .nolist, .error:
+                case .list, .nolist:
                     self?.activityIndicator.stopAnimating()
                     if let navigationController = self?.navigationController {
                         if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
@@ -72,6 +72,16 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
                             navigationController.pushViewController(nextViewController, animated: true)
                         }
                     }
+                case .error:
+                    self?.activityIndicator.stopAnimating()
+                    guard let errorAlert = self?.searchStoreViewModel.errorAlert else {
+                        return
+                    }
+                    let alertController = UIAlertController(title: errorAlert.title, message: errorAlert.message, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "戻る", style: .default) { _ in
+                    }
+                    alertController.addAction(okAction)
+                    self?.present(alertController, animated: true, completion: nil)
                 default:
                     break
                 }
