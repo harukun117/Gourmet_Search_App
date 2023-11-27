@@ -90,7 +90,147 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     @IBAction func tapButton(_ sender: UIButton) {
-        searchStoreViewModel.selectGenre(tag: sender.tag)
+        let customColor = UIColor(red: 255/255, green: 249/255, blue: 218/255, alpha: 1.0)
+        switch sender.tag {
+        case 0:
+            if searchStoreViewModel.genres[0] == nil {
+                searchStoreViewModel.genres[0] = "G001"
+                izakaya.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[0] = nil
+                izakaya.backgroundColor = customColor
+            }
+        case 1:
+            if searchStoreViewModel.genres[1] == nil {
+                searchStoreViewModel.genres[1] = "G002"
+                diningBar.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[1] = nil
+                diningBar.backgroundColor = customColor
+            }
+        case 2:
+            if searchStoreViewModel.genres[2] == nil {
+                searchStoreViewModel.genres[2] = "G003"
+                creativeCuisine.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[2] = nil
+                creativeCuisine.backgroundColor = customColor
+            }
+        case 3:
+            if searchStoreViewModel.genres[3] == nil {
+                searchStoreViewModel.genres[3] = "G004"
+                japaneseFood.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[3] = nil
+                japaneseFood.backgroundColor = customColor
+            }
+        case 4:
+            if searchStoreViewModel.genres[4] == nil {
+                searchStoreViewModel.genres[4] = "G005"
+                westernFood.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[4] = nil
+                westernFood.backgroundColor = customColor
+            }
+        case 5:
+            if searchStoreViewModel.genres[5] == nil {
+                searchStoreViewModel.genres[5] = "G006"
+                italianFrench.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[5] = nil
+                italianFrench.backgroundColor = customColor
+            }
+        case 6:
+            if searchStoreViewModel.genres[6] == nil {
+                searchStoreViewModel.genres[6] = "G007"
+                chineseFood.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[6] = nil
+                chineseFood.backgroundColor = customColor
+            }
+        case 7:
+            if searchStoreViewModel.genres[7] == nil {
+                searchStoreViewModel.genres[7] = "G008"
+                yakiniku.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[7] = nil
+                yakiniku.backgroundColor = customColor
+            }
+        case 8:
+            if searchStoreViewModel.genres[8] == nil {
+                searchStoreViewModel.genres[8] = "G017"
+                koreanFood.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[8] = nil
+                koreanFood.backgroundColor = customColor
+            }
+        case 9:
+            if searchStoreViewModel.genres[9] == nil {
+                searchStoreViewModel.genres[9] = "G009"
+                asianFood.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[9] = nil
+                asianFood.backgroundColor = customColor
+            }
+        case 10:
+            if searchStoreViewModel.genres[10] == nil {
+                searchStoreViewModel.genres[10] = "G010"
+                eachCountryFood.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[10] = nil
+                eachCountryFood.backgroundColor = customColor
+            }
+        case 11:
+            if searchStoreViewModel.genres[11] == nil {
+                searchStoreViewModel.genres[11] = "G011"
+                karaoke.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[11] = nil
+                karaoke.backgroundColor = customColor
+            }
+        case 12:
+            if searchStoreViewModel.genres[12] == nil {
+                searchStoreViewModel.genres[12] = "G012"
+                bar.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[12] = nil
+                bar.backgroundColor = customColor
+            }
+        case 13:
+            if searchStoreViewModel.genres[13] == nil {
+                searchStoreViewModel.genres[13] = "G013"
+                ramen.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[13] = nil
+                ramen.backgroundColor = customColor
+            }
+        case 14:
+            if searchStoreViewModel.genres[14] == nil {
+                searchStoreViewModel.genres[14] = "G016"
+                okonomi.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[14] = nil
+                okonomi.backgroundColor = customColor
+            }
+        case 15:
+            if searchStoreViewModel.genres[15] == nil {
+                searchStoreViewModel.genres[15] = "G014"
+                cafe.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[15] = nil
+                cafe.backgroundColor = customColor
+            }
+        case 16:
+            if searchStoreViewModel.genres[16] == nil {
+                searchStoreViewModel.genres[16] = "G015"
+                other.backgroundColor = UIColor.systemYellow
+            } else {
+                searchStoreViewModel.genres[16] = nil
+                other.backgroundColor = customColor
+            }
+        default:
+            break
+        }
     }
 
     @IBAction func search(_ sender: Any) {
