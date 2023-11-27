@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LMg-Se-ykJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1ID-rK-siG">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
@@ -1544,10 +1544,35 @@
             </objects>
             <point key="canvasLocation" x="1688" y="2"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Initial View Controller-->
+        <scene sceneID="lcS-oj-LPr">
+            <objects>
+                <viewController id="1ID-rK-siG" customClass="InitialViewController" customModule="Gourmet_Search_App" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="r0R-ne-iZ0">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="チカメシヤ" translatesAutoresizingMaskIntoConstraints="NO" id="1oy-lF-lbz">
+                                <rect key="frame" x="0.0" y="216.66666666666663" width="430" height="499"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mIF-VZ-RVq"/>
+                        <color key="backgroundColor" systemColor="systemYellowColor"/>
+                        <constraints>
+                            <constraint firstItem="1oy-lF-lbz" firstAttribute="centerX" secondItem="r0R-ne-iZ0" secondAttribute="centerX" id="VBi-vD-Vo6"/>
+                            <constraint firstItem="1oy-lF-lbz" firstAttribute="width" secondItem="mIF-VZ-RVq" secondAttribute="width" id="Y20-ap-57s"/>
+                            <constraint firstItem="1oy-lF-lbz" firstAttribute="centerY" secondItem="r0R-ne-iZ0" secondAttribute="centerY" id="eNO-2P-MKk"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sGV-OJ-3wv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1292" y="20"/>
+        </scene>
+        <!--Initial Navigation View Controller-->
         <scene sceneID="WDm-B3-oGt">
             <objects>
-                <navigationController id="LMg-Se-ykJ" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="initial" id="LMg-Se-ykJ" customClass="InitialNavigationViewController" customModule="Gourmet_Search_App" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YVw-qf-E23">
                         <rect key="frame" x="0.0" y="59" width="430" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1559,10 +1584,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4u-kA-2mT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-543" y="16"/>
+            <point key="canvasLocation" x="-557" y="14"/>
         </scene>
     </scenes>
     <resources>
+        <image name="チカメシヤ" width="499" height="499"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
