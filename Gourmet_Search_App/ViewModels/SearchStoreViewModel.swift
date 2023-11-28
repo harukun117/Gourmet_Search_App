@@ -12,7 +12,7 @@ final class SearchStoreViewModel {
 
     static let shared = SearchStoreViewModel()
     private let getStoreList = GetStoreList()
-    var storeListResponse: StoreListResponse?
+    private var storeListResponse: StoreListResponse?
     var storeContents: [StoreContent] = []
     @Published var state: State = .initial
     var storeContent: StoreContent?

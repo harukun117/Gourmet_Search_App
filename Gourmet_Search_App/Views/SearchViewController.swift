@@ -12,10 +12,8 @@ import CoreLocation
 class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate {
 
     @IBOutlet var searchBar: UISearchBar!
-
     @IBOutlet weak var rangePickerView: UIPickerView!
     @IBOutlet weak var budgetPickerView: UIPickerView!
-
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var izakaya: UIButton!
     @IBOutlet var diningBar: UIButton!
@@ -230,7 +228,6 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     }
 
     @IBAction func search(_ sender: Any) {
-        searchStoreViewModel.storeListResponse = nil
         switch locationManager.authorizationStatus {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()

@@ -26,9 +26,9 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var course: UILabel!
     @IBOutlet weak var free_food: UILabel!
     @IBOutlet weak var free_drink: UILabel!
-
     @IBOutlet weak var coupon: UIButton!
     @IBOutlet weak var url: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         searchStoreViewModel = SearchStoreViewModel.shared
@@ -62,17 +62,13 @@ class DetailViewController: UIViewController {
             self.course.text = content.course
             self.free_drink.text = content.free_drink
             self.free_food.text = content.free_food
-
-
         }
-
     }
 
     private func loadImage(from urlString: String) async throws -> UIImage? {
         guard let url = URL(string: urlString) else {
             return nil
         }
-
         let (data, _) = try await URLSession.shared.data(from: url)
         return UIImage(data: data)
     }
@@ -102,5 +98,4 @@ class DetailViewController: UIViewController {
             break
         }
     }
-
 }

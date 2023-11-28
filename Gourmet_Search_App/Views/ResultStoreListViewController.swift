@@ -12,12 +12,10 @@ class ResultStoreListViewController: UIViewController, UITableViewDelegate, UITa
 
     var searchStoreViewModel: SearchStoreViewModel!
     @IBOutlet weak var tableView: UITableView!
-
     @IBOutlet weak var finalButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var firstButton: UIButton!
-
     @IBOutlet weak var pageInformation: UILabel!
     @IBOutlet weak var allPageValue: UILabel!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
@@ -25,7 +23,7 @@ class ResultStoreListViewController: UIViewController, UITableViewDelegate, UITa
     private var cancellables = Set<AnyCancellable>()
 
     override func viewDidLoad() {
-         super.viewDidLoad()
+        super.viewDidLoad()
         searchStoreViewModel = SearchStoreViewModel.shared
 
         tableView.register(UINib(nibName: "ResultStoreListTableViewCell", bundle: nil), forCellReuseIdentifier: "customCell")
