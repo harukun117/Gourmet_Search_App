@@ -62,16 +62,12 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
                 switch state {
                 case .loading:
                     self?.activityIndicator.startAnimating()
-                case .list, .nolist:
+                case .list:
                     self?.activityIndicator.stopAnimating()
-                    if let navigationController = self?.navigationController {
-                        if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
-                            navigationController.popToViewController(nextViewController, animated: true)
-                        } else {
-                            let nextViewController = self?.storyboard?.instantiateViewController(withIdentifier: "result") as! ResultStoreListViewController
-                            navigationController.pushViewController(nextViewController, animated: true)
-                        }
-                    }
+                    self?.screenTransition(id: "result")
+                case .nolist:
+                    self?.activityIndicator.stopAnimating()
+                    self?.screenTransition(id: "noresult")
                 case .error:
                     self?.activityIndicator.stopAnimating()
                     guard let errorAlert = self?.searchStoreViewModel.errorAlert else {
@@ -310,6 +306,22 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error: \(error.localizedDescription)")
+    }
+
+    private func screenTransition(id: String) {
+        if let navigationController = self.navigationController {
+            if let nextViewController = navigationController.viewControllers.first(where: { $0 is ResultStoreListViewController }) as? ResultStoreListViewController {
+                navigationController.popToViewController(nextViewController, animated: true)
+            } else {
+                var nextViewController: UIViewController?
+                if id == "result" {
+                    nextViewController = self.storyboard?.instantiateViewController(withIdentifier: id) as! ResultStoreListViewController
+                } else {
+                    nextViewController = self.storyboard?.instantiateViewController(withIdentifier: id) as! NoResultViewController
+                }
+                navigationController.pushViewController(nextViewController!, animated: true)
+            }
+        }
     }
 }
 

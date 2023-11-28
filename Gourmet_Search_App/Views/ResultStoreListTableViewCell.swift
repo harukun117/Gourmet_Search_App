@@ -34,7 +34,7 @@ class ResultStoreListTableViewCell: UITableViewCell {
         }
         self.name.text = name
         self.access.text = "アクセス：" + access
-        self.budget.text = "平均予算" + budget
+        self.budget.text = "平均予算：" + budget
     }
 
     private func loadImage(from urlString: String) async throws -> UIImage? {
