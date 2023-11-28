@@ -62,7 +62,12 @@ class ResultStoreListViewController: UIViewController, UITableViewDelegate, UITa
 
         searchStoreViewModel.$start
             .sink { start in
-                if start == 1 {
+                if start == 1  && start >= self.searchStoreViewModel.available - self.searchStoreViewModel.available % 20 {
+                    self.firstButton.isEnabled = false
+                    self.previousButton.isEnabled = false
+                    self.nextButton.isEnabled = false
+                    self.finalButton.isEnabled = false
+                } else if start == 1 {
                     self.firstButton.isEnabled = false
                     self.previousButton.isEnabled = false
                     self.nextButton.isEnabled = true
