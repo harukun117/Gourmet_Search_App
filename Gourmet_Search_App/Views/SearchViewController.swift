@@ -33,6 +33,7 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     @IBOutlet var cafe: UIButton!
     @IBOutlet var other: UIButton!
     @IBOutlet var searchButton: UIButton!
+    @IBOutlet weak var hotpepperButton: UIButton!
 
     var searchStoreViewModel: SearchStoreViewModel!
     let locationManager = CLLocationManager()
@@ -243,6 +244,12 @@ class SearchViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
             break
         }
     }
+
+    @IBAction func openURLTapped(_ sender: Any) {
+        guard let url = URL(string: "http://webservice.recruit.co.jp") else { return }
+        UIApplication.shared.open(url)
+    }
+
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchStoreViewModel.setKeyword(keyword: searchText)
